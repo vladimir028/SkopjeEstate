@@ -1,0 +1,75 @@
+﻿@model RealEstateProject.Models.Agency
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container mb-3 d-flex flex-row">
+    <a href="~/Agencies/Index" class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: black ">Back to Agencies</a>
+</div>
+<div class="container" >
+
+    <div class="row gx-5">
+        <div class="col-8">
+            <hr />
+            <h6 style="font-size:0.8em">Agency Name</h6>
+            <h4>@Model.CompanyName</h4>
+            <hr />
+            <h6 style="font-size:0.8em">Agency Email</h6>
+            <h4>@Model.Email</h4>
+            <hr />
+            <h6 style="font-size:0.8em">Agency Phone</h6>
+            <h4>@Model.Phone</h4>
+            <hr />
+            <h6 style="font-size:0.8em">Location</h6>
+            <h4>@Model.Address</h4>
+            <hr />
+
+
+        </div>
+        <div class="col-4 p-4 border shadow rounded-3" style="height: 50%">
+            <div class="container">
+                <div class="container-fluid ">
+                    <h3 style="font-size:0.8em">Details For Each Agent For Agency: @Model.CompanyName</h3>
+                    @foreach (var kvp in ViewBag.AgentProperties)
+                    {
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h6 class="card-title">Agent with Email: @kvp.Key</h6>
+                            </div>
+                            <div class="card-body">
+                                @if (kvp.Value.Count == 0)
+                                {
+                                    <p class="card-text"><i>Properties Engaged With:</i> /</p>
+                                }
+                                else
+                                {
+                                    <p class="card-text"><i>Properties Engaged With:</i></p>
+                                    <ul class="list-group">
+                                        @foreach (var val in kvp.Value)
+                                        {
+                                            <ul >
+                                                <li>
+                                                    <a style="color: black" href="~/Properties/Details/@val.Id">@val.Name</a>
+                                                </li>
+                                            </ul>
+                                        }
+                                    </ul>
+                                }
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

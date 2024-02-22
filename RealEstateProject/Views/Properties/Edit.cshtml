@@ -1,0 +1,137 @@
+﻿@model RealEstateProject.Models.Property
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@*00deb6*@
+
+<div class="container mb-3 d-flex flex-row">
+    <a href="~/Properties/Index" class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: black ">Back to Listings</a>
+</div>
+
+<body style=background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;>
+    <form method="post" action="~/Properties/Edit/@Model.Id">
+
+        <div class="container rounded bg-white mt-5">
+           
+            <input type="hidden" name="propertyId" value="@Model.Id"/>
+            <div class="row" style="background-color: #F2F3F4">
+                <div class="col-md-4 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img class="rounded-circle mt-5" src="https://graphicsfamily.com/wp-content/uploads/edd/2020/04/house-apartment-logo-green-Transparent-1.png" width="90">
+                        <span class="font-weight-bold">Agency Name:</span>
+                        <span class="text-black-50">@Model.Agent.Agency.CompanyName</span>
+                        <span class="font-weight-bold">Agency Email:</span>
+                        <span class="text-black-50">@Model.Agent.Agency.Email</span>
+                        <span>Macedonia</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex flex-row align-items-center back">
+                                <i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                                <h6>Update property</h6>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                <label for="@Model.Type"></label>
+                                <select  class="form-select" name="type" aria-label="Default select example">
+                                    @foreach (var item in ViewBag.PropertyList)
+                                    {
+                                        <option @(item == Model.Type ? "selected" : "")  value="@item">@item</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="@Model.Name">Name</label>
+                                <input required type="text" class="form-control" value="@Model.Name" placeholder="Change Name" name="name">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+
+                            <div class="col-md-6">
+                                <label for="@Model.Description">Description</label>
+                                <textarea required class="form-control" placeholder="Change Description" name="description" value="@Model.Description">@Model.Description</textarea>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="@Model.Price">Price</label>
+                                <input required type="text" class="form-control" value="@Model.Price" placeholder="Change Price" name="price">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label for="@Model.Size">Size</label>
+                                <input required type="text" class="form-control" placeholder="Change Size" value="@Model.Size" name="size">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="@Model.Location">Location</label>
+                                <input required type="text" class="form-control" value="@Model.Location" placeholder="Change Location" name="location">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label for="@Model.Address">Address</label>
+                                <input required type="text" class="form-control" placeholder="Change Address" value="@Model.Address" name="address">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="BuyRent">Usage</label>
+                                <div class="form-check">
+                                    <input  @(Model.BuyRent == "buy" ? "checked" : "") required class="form-check-input" type="radio" name="usage" id="buy" value="buy">
+                                    <label class="form-check-label" for="buy">
+                                        Buy
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input  @(Model.BuyRent == "rent" ? "checked" : "") required class="form-check-input" type="radio" name="usage" id="rent" value="rent">
+                                    <label class="form-check-label" for="rent">
+                                        Rent
+                                    </label>
+                                </div>
+                            </div>
+                            @if (User.IsInRole("Admin"))
+                            {
+                            <div class="col-md-6">
+                                <label for="@Model.Agent">Update Agent</label>
+                                <select class="form-select" name="agentId" aria-label="Default select example">
+                                    @foreach (var item in ViewBag.Agents)
+                                    {
+                                        <option @(item.Id == Model.Agent.Id ? "selected" : "") value="@item.Id">Name: @item.Ime </option>
+                                    }
+                                </select>
+                            </div>
+                            }
+                            @if (User.IsInRole("Agent"))
+                            {
+                                <input type="hidden"  name="agentId" value="@Model.Agent.Id"/>
+                            }
+                            
+
+                            <div class="mt-5 text-right">
+                                <label for="@Model.ImageURL"></label>
+                                <a href="~/Images/Index/@Model.Id" class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: white ">
+                                    Add/Update/Delete Image
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-5 text-right">
+                        <button class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: black">Update Property
+                            </button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

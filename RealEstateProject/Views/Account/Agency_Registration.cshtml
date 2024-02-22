@@ -1,0 +1,25 @@
+﻿@model RealEstateProject.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Agency_Registration";
+}
+
+
+
+<main aria-labelledby="title">
+
+    <form method="post" action="/Account/Agency_Registration">
+        <div class="container">
+            <h2>Which company would you like to represent?</h2>
+            <div class="col-md-2 col-form-label">
+                <select name="agencyId" class="form-control">
+                    @foreach (var agency in ViewBag.Agencies)
+                    {
+                        <option value="@agency.Id">@agency.CompanyName, @agency.Id</option>
+                    }
+                </select>
+            </div>
+            <button class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: black" type="submit">Submit</button>
+        </div>
+    </form>
+
+</main>

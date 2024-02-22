@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+
+
+    <div class="z-index:-999">
+        <img src="https://media.rightmove.co.uk/hero_image.jpeg" height="300px" />
+    </div>
+    <div class="container m-auto p-3 rounded-3" style="max-width: 40%; margin-top: -5%!important; background-color: #262637; z-index:999; position: relative;">
+        <h2 class="text-center" style="color: #00deb6">Believe in finding it</h2>
+        <h5 class="text-center text-white">Search Properties for sale and to rent in Skopje</h5>
+        <form class="text-center" method="get" action="~/Properties/Index">
+            <div class="d-flex justify-content-center mb-3">
+                <input id="location" name="location" type="text" class="form-control" placeholder="Search Location" aria-label="Search Location" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2" style="background-color: #00deb6 ">Search</button>
+            </div>
+        </form>
+    </div>
+    <br />
+
+<div class="row justify-content-around">
+    <div class="col-4">
+        <div class="card mb-4 box-shadow" style="background: #262637; margin-left: 2em">
+            <img class="card-img-top" src="https://i2.au.reastatic.net/800x600/76a01e838b9bf91a51aa04df79961434cd6c3f9d7598306e049287d482d3961a/main.jpg" data-holder-rendered="true">
+            <div class="card-body">
+                <h3 class="card-text" style="color: ghostwhite; text-align: center">Your house hunt gets easier with us. Just search your preferred Location!</h3>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-4" style=" margin-right: 2em;">
+        <div class="card mb-4 box-shadow" style="background: #262637; margin-left: 2em; margin-top: 4em;">
+            <img class="card-img-top" src="https://www.bankrate.com/2022/11/21153758/buying-before-selling.jpg?auto=webp&optimize=high&crop=16:9" data-holder-rendered="true">
+            <div class="card-body">
+                <h3 class="card-text" style="color: ghostwhite; text-align: center">Buy, sell and rent with us.</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>

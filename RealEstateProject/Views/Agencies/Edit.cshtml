@@ -1,0 +1,149 @@
+﻿@model RealEstateProject.Models.Agency
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Agency</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Lattitude, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Lattitude, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Lattitude, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Longtitude, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Longtitude, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Longtitude, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+<div class="container mb-3 d-flex flex-row">
+    <a href="~/Agencies/Index" class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: black ">Back to Agencies</a>
+</div>
+
+<body style=background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;>
+    <form method="post" action="~/Agencies/Edit/@Model.Id">
+
+        <input type="hidden" value="@Model.Id" name="id"/>
+        <div class="container rounded bg-white mt-5">
+            <div class="row" style="background-color: #F2F3F4">
+                <div class="col-md-4 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img class="rounded-circle mt-5" src="https://graphicsfamily.com/wp-content/uploads/edd/2020/04/house-apartment-logo-green-Transparent-1.png" width="90">
+
+                        <span>Macedonia</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex flex-row align-items-center back">
+                                <i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                                <h6>Update Agency</h6>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label for="CompanyName">Name</label>
+                                <input name="CompanyName" type="text" class="form-control" placeholder="Update Name" value="@Model.CompanyName">
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <label for="Email">Email</label>
+                                <input class="form-control" placeholder="Update Email" name="Email" value="@Model.Email">
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label for="Address">Address</label>
+                                <input type="text" class="form-control" placeholder="Update Address" name="Address" value="@Model.Address">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="Phone">Phone</label>
+                                <input type="text" class="form-control" placeholder="Update Phone" name="Phone" value="@Model.Phone">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label for="Longtitude">Longtitude</label>
+                                <input type="text" class="form-control" placeholder="Update Longtitude" name="Longtitude" value="@Model.Longtitude">
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <label for="Lattitude">Lattitude</label>
+                                <input type="text" class="form-control" placeholder="Update Lattitude" name="Lattitude" value="@Model.Lattitude">
+                            </div>
+                        </div>
+
+
+
+                        <div class="mt-5 text-right">
+                            <button class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: black">
+                                Update Agency
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

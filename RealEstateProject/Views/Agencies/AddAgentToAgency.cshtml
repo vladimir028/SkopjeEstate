@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "AddAgentToAgency";
+}
+
+<body style=background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;>
+
+    <form method="post" action="/Agencies/AddAgentToAgency">
+        <div class="container rounded bg-white mt-5">
+            <div class="row" style="background-color: #F2F3F4">
+                <div class="col-md-4 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img class="rounded-circle mt-5" src="https://graphicsfamily.com/wp-content/uploads/edd/2020/04/house-apartment-logo-green-Transparent-1.png" width="90">
+
+                        <span>Macedonia</span>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex flex-row align-items-center back">
+                                <i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                                <h6>Add Agent to an Existing Company</h6>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                Agencies
+                                <select class="form-select" name="agencyId">
+                                    @foreach (var agency in ViewBag.Agencies)
+                                    {
+                                        <option value="@agency.Id">@agency.CompanyName, Agency Id: @agency.Id</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-6">
+                                Agents
+                                <select class="form-select" name="agentId">
+                                    @foreach (var agent in ViewBag.Agents)
+                                    {
+                                        <option value="@agent.Id">@agent.Ime, Agent Id: @agent.Id</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="mt-5 text-right">
+                                <button class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: black">
+                                    Add Agent
+                                </button>
+                            </div>
+                        </div>
+                            </div>
+                            
+                        </div>
+                </div>
+            </div>
+</form>
+</body>
+

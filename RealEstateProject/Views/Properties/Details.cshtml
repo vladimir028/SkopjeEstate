@@ -1,0 +1,109 @@
+﻿@model RealEstateProject.Models.Property
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+@*<div class="container">
+    @Html.ActionLink("Back to List", "/Index")
+</div>*@
+
+<div class="container mb-3 d-flex flex-row">
+    <a href="~/Properties/Index" class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: black ">Back to Listings</a>
+    @if (User.IsInRole("Admin"))
+    {
+        <a href="~/Properties/Edit/@Model.Id" class="btn btn-primary ms-2" style="background-color: #00deb6; border-color: #00deb6; color: black ">Edit Listing</a>
+    }
+    @if (User.IsInRole("Agent") && ViewBag.sameAgency == true)
+    {
+        <a href="~/Properties/Edit/@Model.Id" class="btn btn-primary ms-2" style="background-color: #00deb6; border-color: #00deb6; color: black ">Edit Listing</a>
+    }
+    @if (User.IsInRole("Admin"))
+    {
+        <a href="~/Properties/Delete/@Model.Id" class="btn btn-primary ms-2" style="background-color: #00deb6; border-color: #00deb6; color: black ">Delete Listing</a>
+    }
+
+    @*@Html.ActionLink("Create New", "Create", null, new { @class="btn btn-primary", @style = ""})*@
+</div>
+
+<div class="container">
+    <div class="row d-flex justify-content-center mb-3">
+        <div id="carousel-@Model.Id" class="carousel slide w-75" data-bs-ride="false">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="@Model.ImageURL.ElementAt(0).ImageURL" class="d-block w-100" alt="...">
+                </div>
+                @foreach (var img in Model.ImageURL.Skip(1))
+                {
+                    <div class="carousel-item">
+                        <img src="@img.ImageURL" class="d-block w-100" alt="...">
+                    </div>
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@Model.Id" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel-@Model.Id" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <div class="row gx-5">
+        <div class="col-8">
+            <h4>@Model.Name</h4>
+            <h6>Type: @Model.Type</h6>
+            <h6>Price: @Model.Price.ToString("C2")</h6>
+            <h6>Size: @Model.Size m<sup>2</sup></h6>
+            <hr />
+            <p style="font-size:0.8em">Address</p>
+            <h4>@Model.Address</h4>
+            <hr />
+            <h4>Property Description</h4>
+            <h6>@Model.Description</h6>
+            <hr />
+            <h4>Availability</h4>
+            <h6>For: @Model.BuyRent</h6>
+            <div class="container">
+                <iframe width="425" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=12.33469605445862%2C12.340410591375226%2C12.3526132106781%2C12.349591740129407&amp;layer=mapnik" style="border: 1px solid black"></iframe><br /><small><a href="https://www.openstreetmap.org/#map=17/12.34500/12.34365">View Larger Map</a></small> 
+            </div>
+        </div>
+        <div class="col-4 p-4 border shadow rounded-3" style="height: 50%">
+            <div class="container">
+                @if (Model.Agent.Agency != null)
+                {
+                    <div class="container-fluid ">
+                        <p style="font-size:0.8em">Marketed By</p>
+                        <p><b>@Model.Agent.Agency.CompanyName</b></p>
+                        <p style="font-size:0.9em">@Model.Agent.Agency.Address</p>
+                    </div>
+                }
+                @if (Model.Agent.Agency == null)
+                {
+                    <div class="container-fluid ">
+                        <p style="font-size:0.8em">Independent Agent</p>
+                       
+                    </div>
+                }
+               
+                <div class="container rounded py-2 px-4" style="background-color:#000433">
+                    <p style="color:#00deb6">Agent: <span style="color: white">@Model.Agent.Ime</span></p>
+                    <p style="color:#00deb6">Contact Agent: <span style="color: white">@Model.Agent.UserName</span></p>
+
+                    <p style="color:#00deb6">Call: <span style="color: white">@Model.Agent.Phone</span></p>
+                    <button class="btn-lg text-center w-100 m-auto rounded" style="background-color: #00deb6">Request Details</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id })
+    
+</p>*@
+
+

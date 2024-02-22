@@ -1,0 +1,125 @@
+﻿@model RealEstateProject.Models.Property
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container mb-3 d-flex flex-row">
+    <a href="~/Properties/Index" class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: black ">Back to Listings</a>
+</div>
+
+    <body style=background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;>
+        <form method="post" action="~/Properties/Create">
+
+            <div class="container rounded bg-white mt-5">
+                <div class="row" style="background-color: #F2F3F4">
+                    <div class="col-md-4 border-right">
+                        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="https://graphicsfamily.com/wp-content/uploads/edd/2020/04/house-apartment-logo-green-Transparent-1.png" width="90">
+                        @*<span class="font-weight-bold">Real Estate</span>
+                        <span class="text-black-50">realestateskopje@gmail.com</span>*@
+                        <span>Macedonia</span></div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="p-3 py-5">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex flex-row align-items-center back">
+                                    <i class="fa fa-long-arrow-left mr-1 mb-1"></i>
+                                    <h6>Create property</h6>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-6">
+                                    <label for="Type"></label>
+                                    <select class="form-select" name="type" aria-label="Default select example">
+                                        @foreach (var item in ViewBag.PropertyList)
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="Name">Name</label>
+                                    <input required type="text" class="form-control" placeholder="Enter Name" name="name">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+
+                                <div class="col-md-6">
+                                    <label for="Description">Description</label>
+                                    <textarea required class ="form-control" placeholder="Enter Description" name="description"></textarea>
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="Price">Price</label>
+                                    <input required type="number" class="form-control" placeholder="Enter Price" name="price">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <label for="Size">Size</label>
+                                    <input required type="number" class="form-control" placeholder="Enter Size" name="size">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="Location">Location</label>
+                                    <input required type="text" class="form-control" placeholder="Enter Location" name="location">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <label for="Address">Address</label>
+                                    <input required type="text" class="form-control" placeholder="Enter Address" name="address">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="BuyRent">Usage</label>
+                                    @*<input type="text" class="form-control" placeholder="Serve">*@
+                                    <div class="form-check">
+                                        <input required class="form-check-input" type="radio" name="usage" id="buy" value="buy">
+                                        <label class="form-check-label" for="buy">
+                                            Buy
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input required class="form-check-input" type="radio" name="usage" id="rent" value="rent">
+                                        <label class="form-check-label" for="rent">
+                                            Rent
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+                                        <label for="Agent">Agent Email</label>
+                                        <select class="form-select" name="userId" aria-label="Default select example">
+                                            @foreach (var item in ViewBag.Users)
+                                            {
+                                                <option value="@item.Id">@item.Email</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    
+
+                                    
+                                </div>
+                            <div class="mt-5 text-right">
+                                <button class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: black">
+                                    Proceed to Add an Image
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </body>
+
+    @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

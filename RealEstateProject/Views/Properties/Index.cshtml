@@ -1,0 +1,102 @@
+﻿@model IEnumerable<RealEstateProject.Models.Property>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<nav class="nav container">
+    <form class="d-flex flex-row" action="~/Properties/Index" method="get">
+        <div class="input-group mb-3">
+            <input id="location" name="location" type="text" class="form-control" placeholder="Search Location" aria-label="Search Location" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
+        </div>
+
+        <div class="mb-3">
+            <input type="text" name="minP" class="form-control" id="exampleFormControlInput1" placeholder="Min Price">
+        </div>
+
+        <div class="mb-3">
+            <input type="text" name="maxP" class="form-control" id="exampleFormControlInput1" placeholder="Max Price">
+        </div>
+        <div class="mb-3 ms-3">
+            <input type="text" name="minS" class="form-control" id="exampleFormControlInput1" placeholder="Min Size">
+        </div>
+
+        <div class="mb-3 ">
+            <input type="text" name="maxS" class="form-control" id="exampleFormControlInput1" placeholder="Max Size">
+        </div>
+
+        <select class="form-select mb-1" name="type" aria-label="Default select example">
+            <option value="">All types</option>
+            @foreach (var item in ViewBag.PropertyList)
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+    </form>
+</nav>
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="container mb-3">
+
+        <a href="~/Properties/Create" class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: black ">Create New</a>
+        @*@Html.ActionLink("Create New", "Create", null, new { @class="btn btn-primary", @style = ""})*@
+    </div>
+}
+
+
+<div class="container-fluid py-5" style="background-color: #F2F3F4">
+    @foreach (var item in Model)
+    {
+
+        <div class="container w-75 border rounded-3 mb-3 py-4 px-4 bg-light shadow">
+            <div class="row">
+                <div class="col">
+                    <div id="carousel-@item.Id" class="carousel slide w-75" data-bs-ride="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="/Properties/Details/@item.Id" style="text-decoration:none"> <img src="@item.ImageURL.ElementAt(0).ImageURL" class="d-block w-100" alt="..."></a>
+                            </div>
+                            @foreach (var img in item.ImageURL.Skip(1).Take(3))
+                            {
+
+                                <div class="carousel-item">
+                                    <a href="/Properties/Details/@item.Id" style="text-decoration:none"><img src="@img.ImageURL" class="d-block w-100" alt="..."></a>
+                                </div>
+                            }
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-@item.Id" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-@item.Id" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col">
+                    <h4>@item.Name, @item.Location</h4>
+                    <h6>@item.BuyRent</h6>
+
+                    <p>@item.Description.Substring(0, Math.Min(200, item.Description.Length)) ...</p>
+                    @if (item.Agent.Agency != null)
+                    {
+                        <div>
+                            <p><b>Agency name:</b> @item.Agent.Agency.CompanyName</p>
+                            <p><b>Agency mail:</b> @item.Agent.Agency.Email</p>
+                            <p><b>Agency phone: </b>@item.Agent.Agency.Phone</p>
+                        </div>
+                    }
+                    @if (item.Agent.Agency == null)
+                    {
+                        <p><b>Contact Independent Agent:</b> @item.Agent.Phone</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+

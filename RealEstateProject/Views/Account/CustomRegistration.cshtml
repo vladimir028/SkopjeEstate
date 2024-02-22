@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "CustomRegistration";
+}
+
+
+
+<main aria-labelledby="title">
+
+    <form method="post" action="/Account/Test">
+        <div class="container">
+            <h2>Select Role</h2>
+            <div class="col-md-2 col-form-label">
+                <select name="role" class="form-control">
+                    @foreach (var role in ViewBag.Roles)
+                    {
+                        <option value="@role.Name">@role.Name</option>
+                    }
+                </select>
+            </div>
+            <button class="btn btn-primary" style="background-color: #00deb6; border-color: #00deb6; color: black" type ="submit">Submit</button>
+        </div>
+    </form>
+
+</main>
