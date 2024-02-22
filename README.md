@@ -39,7 +39,7 @@ If you'd like to contribute to the project, please follow these steps:
 
 ## Issues
 
-If you encounter any issues or have suggestions for improvement, please [open an issue](https://github.com/your-username/real-estate-app/issues).
+If you encounter any issues or have suggestions for improvement, please [open an issue](https://github.com/vladimir028/real-estate-app/issues).
 
 ## License
 
